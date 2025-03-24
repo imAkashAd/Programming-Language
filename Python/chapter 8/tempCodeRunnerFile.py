@@ -1,2 +1,2 @@
-ck()
-    return(a)
+f n == 0:
+    #     return ""
