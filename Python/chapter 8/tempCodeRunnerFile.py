@@ -1,1 +1,2 @@
-Thanks
+ck()
+    return(a)
