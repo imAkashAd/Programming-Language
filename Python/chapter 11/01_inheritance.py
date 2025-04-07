@@ -9,4 +9,5 @@ class Programmer(Employee):
     
 
 a = Employee()
-print(a.company, a.name)
+b = Programmer()
+print(a.company, b.company)
