@@ -27,7 +27,7 @@ class MyWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Welcome to my app',
+          'MY APP',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -56,7 +56,7 @@ class MyWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'MY APP',
+                      'Welcome to ANKONA',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 28,
@@ -74,13 +74,17 @@ class MyWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue.shade200
                           ), 
-                        child: Text('Visit', style: TextStyle(fontWeight: FontWeight.bold),)),
+                        child: Text('Visit', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),)),
                         ElevatedButton(
                           onPressed: () {}, 
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue.shade200
                           ),
-                        child: Text('Like', style: TextStyle(fontWeight: FontWeight.bold),)),
+                        child: Text('Like', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),)),
                       ],
                     ),
                   ],
