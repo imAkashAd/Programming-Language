@@ -25,6 +25,13 @@ class NotesDialogue extends StatefulWidget {
 
 class _NotesDialogueState extends State<NotesDialogue> {
   late int _selectedColorIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedColorIndex = widget.colorIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     final titleController = TextEditingController(text: widget.title);
@@ -80,26 +87,56 @@ class _NotesDialogueState extends State<NotesDialogue> {
             SizedBox(height: 16),
             Wrap(
               spacing: 8,
-              children: 
-                List.generate(
-                  widget.noteColors.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedColorIndex = index;
-                      });
-                    },
-                    child: CircleAvatar(
-                      radius: 16,
-                      backgroundColor: widget.noteColors,index,
-                    )
+              children: List.generate(
+                widget.noteColors.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedColorIndex = index;
+                    });
+                  },
+                  child: CircleAvatar(
+                    radius: 16,
+                    backgroundColor: widget.noteColors[index],
+                    child: _selectedColorIndex == index
+                        ? Icon(Icons.check, color: Colors.black, size: 16)
+                        : null,
                   ),
                 ),
-            
+              ),
             ),
           ],
         ),
       ),
+
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Cancel', style: TextStyle(color: Colors.black)),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black87,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          onPressed: () async {
+            final newTitle = titleController.text;
+            final newDescription = descriptionController.text;
+
+            widget.onNotesaved(
+              newTitle,
+              newDescription,
+              _selectedColorIndex,
+              currentDate,
+            );
+          },
+          child: Text('Save'),
+        ),
+      ],
     );
   }
 }
