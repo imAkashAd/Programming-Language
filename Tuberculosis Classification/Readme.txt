@@ -1,0 +1,1 @@
+This a thesis implementation with high accuracy. It will classify the tuberculosis image and normal image from x-ray. It can make a great impact in diagnosis system.
