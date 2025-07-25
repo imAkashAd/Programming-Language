@@ -119,7 +119,8 @@ class _OtpPageState extends State<OtpPage> {
                 height: 45,
               ),
               ElevatedButton(
-                onPressed: () {;
+                onPressed: () {
+                  ;
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hisabowala_app/pages/contact.dart';
 import 'package:hisabowala_app/pages/home_page.dart';
 import 'package:hisabowala_app/pages/login_page.dart';
+import 'package:hisabowala_app/pages/note.dart';
+import 'package:hisabowala_app/pages/notun_ponno.dart';
 import 'package:hisabowala_app/pages/otp_page.dart';
 import 'package:hisabowala_app/pages/registration_page.dart';
+import 'package:hisabowala_app/pages/todays_sell.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,6 +28,10 @@ class MyApp extends StatelessWidget {
         OtpPage.routeName:(context) => OtpPage(),
         RegistrationPage.routeName:(context) => RegistrationPage(),
         HomePage.routeName:(context) => HomePage(),
+        TodaysSell.routeName:(context)=> TodaysSell(),
+        NotunPonno.routeName:(context) => NotunPonno(),
+        Note.routeName:(context) => Note(),
+        Contact.routeName:(context) => Contact(),
       },
     );
   }
