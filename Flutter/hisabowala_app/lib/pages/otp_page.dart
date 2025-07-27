@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hisabowala_app/pages/login_page.dart';
+import 'package:hisabowala_app/services/view_registrations.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpPage extends StatefulWidget {
@@ -120,7 +121,7 @@ class _OtpPageState extends State<OtpPage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  ;
+                  Navigator.pushNamed(context, ViewRegistrationPage.routeName);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

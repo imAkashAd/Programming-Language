@@ -4,6 +4,7 @@ import 'package:hisabowala_app/pages/contact.dart';
 import 'package:hisabowala_app/pages/note.dart';
 import 'package:hisabowala_app/pages/notun_ponno.dart';
 import 'package:hisabowala_app/pages/todays_sell.dart';
+import 'package:hisabowala_app/services/view_registrations.dart';
 import 'package:hisabowala_app/widget/appbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,6 +51,12 @@ class _HomePageState extends State<HomePage> {
                         Navigator.pushNamed(context, Contact.routeName);
                       },
                       child: const Text('যোগাযোগ')
+                      ),
+                      ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, ViewRegistrationPage.routeName);
+                      },
+                      child: const Text('registration list')
                       )
                 ],
               )

@@ -7,6 +7,8 @@ import 'package:hisabowala_app/pages/notun_ponno.dart';
 import 'package:hisabowala_app/pages/otp_page.dart';
 import 'package:hisabowala_app/pages/registration_page.dart';
 import 'package:hisabowala_app/pages/todays_sell.dart';
+import 'package:hisabowala_app/services/listview.dart';
+import 'package:hisabowala_app/services/view_registrations.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         NotunPonno.routeName:(context) => NotunPonno(),
         Note.routeName:(context) => Note(),
         Contact.routeName:(context) => Contact(),
+        RegistrationListPage.routeName: (context) => RegistrationListPage(),
+        ViewRegistrationPage.routeName:(context) => ViewRegistrationPage(),
       },
     );
   }

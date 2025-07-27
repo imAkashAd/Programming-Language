@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hisabowala_app/services/listview.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:hisabowala_app/pages/otp_page.dart';
+import 'package:hisabowala_app/services/database_helper.dart';
 
 class RegistrationPage extends StatefulWidget {
   static String routeName = '/registration';
@@ -13,6 +15,14 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   bool isChecked = false;
+
+  final TextEditingController storeNameController = TextEditingController();
+  final TextEditingController ownerNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +30,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         margin: const EdgeInsets.only(left: 20, right: 20),
         alignment: Alignment.center,
         child: SingleChildScrollView(
+          clipBehavior: Clip.none,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -42,9 +53,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         size: 40,
                       ),
                     ),
-                    const SizedBox(height: 10), // Space between icon and text
+                    const SizedBox(height: 10),
                     const Text(
-                      'আপনার ছবি দিন', // Text in Bengali for 'Upload Your Photo'
+                      'আপনার ছবি দিন',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -66,8 +77,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -87,8 +97,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: const Icon(Icons.store, color: Colors.blue),
                     ),
                   ),
-                  const SizedBox(
-                      width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,6 +116,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: storeNameController,
                             decoration: InputDecoration(
                               labelText: 'দোকানের নাম লিখুন',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -134,8 +144,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -155,8 +164,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: const Icon(Icons.person, color: Colors.blue),
                     ),
                   ),
-                  const SizedBox(
-                      width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,6 +183,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: ownerNameController,
                             decoration: InputDecoration(
                               labelText: 'দোকানের মালিক/পরিচালক',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -202,8 +211,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -220,7 +228,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.fact_check_sharp, color: Colors.blue),
+                      child: const Icon(Icons.fact_check_sharp,
+                          color: Colors.blue),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -245,6 +254,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             alignment: Alignment.centerRight,
                             children: [
                               TextField(
+                                controller: categoryController,
                                 decoration: InputDecoration(
                                   labelText: '--নির্বাচন করুন--',
                                   labelStyle:
@@ -282,8 +292,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -300,11 +309,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.merge_type_outlined, color: Colors.blue),
+                      child: const Icon(Icons.merge_type_outlined,
+                          color: Colors.blue),
                     ),
                   ),
-                  const SizedBox(
-                      width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,6 +332,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: addressController,
                             decoration: InputDecoration(
                               labelText: 'দোকানের সম্পূর্ণ ঠিকানা',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -350,8 +360,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -371,8 +380,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: const Icon(Icons.lock, color: Colors.blue),
                     ),
                   ),
-                  const SizedBox(
-                      width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -391,6 +399,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: passwordController,
                             decoration: InputDecoration(
                               labelText: 'পাসওয়ার্ড',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -438,6 +447,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: passwordController,
                             decoration: InputDecoration(
                               labelText: 'পাসওয়ার্ড',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -470,8 +480,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Row(
                 children: [
                   Transform.translate(
-                    offset: const Offset(
-                        0, -10),
+                    offset: const Offset(0, -10),
                     child: Container(
                       alignment: Alignment.center,
                       width: 40,
@@ -491,8 +500,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: const Icon(Icons.call, color: Colors.blue),
                     ),
                   ),
-                  const SizedBox(
-                      width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -511,6 +519,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                           child: TextField(
+                            controller: mobileController,
                             decoration: InputDecoration(
                               labelText: 'মোবাইল নম্বর দিন',
                               labelStyle: const TextStyle(color: Colors.grey),
@@ -564,9 +573,46 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, OtpPage.routeName);
-                },
+                // In your ElevatedButton onPressed:
+onPressed: () async {
+  if (storeNameController.text.isNotEmpty &&
+      ownerNameController.text.isNotEmpty &&
+      categoryController.text.isNotEmpty &&
+      addressController.text.isNotEmpty &&
+      passwordController.text.isNotEmpty &&
+      mobileController.text.isNotEmpty &&
+      isChecked) {
+    try {
+      final row = {
+        'store_name': storeNameController.text,
+        'owner_name': ownerNameController.text,
+        'category': categoryController.text,
+        'address': addressController.text,
+        'password': passwordController.text,
+        'mobile': mobileController.text
+      };
+      await DatabaseHelper.instance.insertRegistration(row);
+      
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful!')),
+      );
+      
+      // Navigate to registration list or OTP page
+      Navigator.pushNamed(context, OtpPage.routeName);
+      // Or if you want to go to OTP page:
+      // Navigator.pushNamed(context, OtpPage.routeName);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Please fill all fields and accept terms')),
+    );
+  }
+},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade900,
                   padding:
